@@ -1,1 +1,1 @@
-https://notify-note-web-app-yy4w.vercel.app/
+https://notify-note-web-app-8tp2.vercel.app/
