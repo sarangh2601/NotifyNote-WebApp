@@ -12,10 +12,7 @@ const AddNotes = ({ task, setTask }) => {
     newTask.push({ title, details });
 
     setTask(newTask);
-
-    setTitle("");
-    setDetails("");
-  };
+  }
 
   return (
     <div className="w-full md:w-1/2 flex gap-8 flex-col p-5 md:p-10 border-2 border-white rounded-xl">

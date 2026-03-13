@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import AddNotes from "./Components/AddNotes";
 import YourNotes from "./Components/YourNotes";
 import DetailsModal from "./Components/DetailsModal";
+import EditNotes from "./Components/EditNotes";
 
 const App = () => {
 
   const [task, setTask] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+
+  const [viewModal, setViewModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+
   const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   return (
     <>
@@ -18,30 +23,41 @@ const App = () => {
           alt="NotifyNote Logo"
           className="mx-auto h-[80px] md:h-[120px] w-auto"
         />
+
         <hr className="text-white" />
 
-        <div className="flex flex-col md:flex-row gap-10">
+        <div className="flex flex-col md:flex-row gap-10 w-[85%] mx-auto">
 
-          {/* Add Notes Component */}
           <AddNotes task={task} setTask={setTask} />
 
-          {/* Your Notes Component */}
           <YourNotes
             task={task}
-            setShowModal={setShowModal}
+            setTask={setTask}
             setSelectedTask={setSelectedTask}
+            setSelectedIndex={setSelectedIndex}
+            setViewModal={setViewModal}
+            setEditModal={setEditModal}
           />
 
         </div>
 
       </div>
 
-      {/* Modal */}
-      <DetailsModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        selectedTask={selectedTask}
-      />
+      {viewModal && selectedTask && (
+        <DetailsModal
+          selectedTask={selectedTask}
+          setViewModal={setViewModal}
+        />
+      )}
+
+      {editModal && (
+        <EditNotes
+          selectedIndex={selectedIndex}
+          setEditModal={setEditModal}
+          task={task}
+          setTask={setTask}
+        />
+      )}
     </>
   );
 };
